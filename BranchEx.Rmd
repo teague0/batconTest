@@ -1,0 +1,45 @@
+---
+title: "CodeBreak"
+output: html_document
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(ggrepel)
+library(cowplot)
+library(viridis)
+library(scales)
+library(kableExtra)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r ceDat}
+datapath <- "/Users/teagueomara/Library/CloudStorage/Box-Box/- Missions & Programs/Collaborative Projects/conservation_evidence/Bio Cons SI Shortfalls Cons Sci/data and script/"
+
+cons_evidence <- read.csv(paste0(datapath,"ConservationEvidence.csv"))%>%
+  mutate(Outcome = fct_relevel(Outcome, "Beneficial",
+                               "Likely beneficial", "Limited evidence", 
+                               "Trade-off ", "Unlikely beneficial", "Likely harmful", "No evidence"),
+         IUCN_threat = fct_relevel(IUCN_threat, "Logging & plant harvesting",
+                                   "Agriculture", "Hunting & harvesting", 
+                                   "Human disturbance", "Urban development", "Energy prod. & mining", 
+                                   "Climate change ", "Natural sys. modifications","White-nose Syndrome", "Invasive sp","Diseases",
+                                   "Light pollution", "Water pollution", "Noise pollution", "Transportation & corridors", "Multiple threats"))
+
+foraging_ev<- cons_evidence %>% 
+  filter(Threat_Response == "Foraging habitat")
+
+foraging_ev %>% select(-Threat_Response) %>%  
+  kable() %>%
+  kable_styling(font_size = 12)
+```

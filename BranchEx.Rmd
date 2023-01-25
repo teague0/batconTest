@@ -53,7 +53,11 @@ Create a branch:
 `git branch testBranch` This will create a branch
 `git checkout newBranch` This will switch to that branch and then send your committed work that way.
 
+You can commit your work in progress along the way if you're not finished with the feature:
+`git commit --all -m "WIP"`
 
+Once you're satisfied with your work, you can merge it back to `main`. First make sure that your file is saved / committed. Then switch/checkout back to `main`:
+`git checkout main`
 
-Switch to a branch
-
+Then merge main with your branch:
+`git merge testBranch`

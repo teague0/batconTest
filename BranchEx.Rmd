@@ -43,3 +43,17 @@ foraging_ev %>% select(-Threat_Response) %>%
   kable() %>%
   kable_styling(font_size = 12)
 ```
+
+
+There is a limited amount of git interaction that can be done through the RStudio interface, and it will focus on the main branch on GitHub. If you want to create a new branch to be able to monkey around with things without breaking the `main` code, you can create a separate `branch` and then eventually merge that back to `main`.
+
+Brief list of git commands: https://happygitwithr.com/git-commands.html
+
+Create a branch: 
+`git branch testBranch` This will create a branch
+`git checkout newBranch` This will switch to that branch and then send your committed work that way.
+
+
+
+Switch to a branch
+
